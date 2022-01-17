@@ -15,22 +15,24 @@
     
     <div id="app">
 
-        <input v-model= "newTask" type="text" placeholder="Nuovo Todo" @keyup.enter="newTask">
-        <button @click="addTask">Aggiungi</button>
-
-        <div class="task-container">
-            <ul>
-                <li v-for="(task, i) in tasks">
-                    <span>
-                        {{ task.text }}
-                    </span>
-                    <!-- {{ newTask }} -->
-                    <span @click="removeTask"><i class="fas fa-times"></i></span> 
-                </li>
-            </ul>
-
+        <div class="container">
+            <input v-model= "newTask" type="text" placeholder="Nuovo Todo" @keyup.enter="addTask" class="input">
+            <button @click="addTask" class="button">Aggiungi</button>
         </div>
-
+            
+            <div class="task-container">
+                <ul>
+                    <li v-for="(task, i) in tasks">
+                        <span :class="[tasks[i].done === true ? 'active' : ' ']">
+                            {{ task.text }}
+                        </span>
+                        <span @click="removeTask(i)"><i class="fas fa-times"></i></span> 
+                        <hr>
+                    </li>
+                </ul>
+                
+            </div>
+            
     </div>
 
     <script src="js/script.js"></script>
